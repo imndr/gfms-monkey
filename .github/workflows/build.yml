@@ -57,6 +57,7 @@ jobs:
       - name: Deploy Docker Image on Azure VM
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.AZURE_USER }}@${{ secrets.AZURE_HOST }} << EOF
+            sudo -s
             docker pull ghcr.io/${{ github.repository }}/my-app:latest
             docker stop my-app || true
             docker rm my-app || true
