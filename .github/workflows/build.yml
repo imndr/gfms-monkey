@@ -59,8 +59,8 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.AZURE_USER }}@${{ secrets.AZURE_HOST }} << EOF
             sudo -s
             echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-            docker pull ghcr.io/${{ github.repository }}/my-app:latest
-            docker stop my-app || true
-            docker rm my-app || true
+            docker pull ghcr.io/${{ github.repository }}/app:latest
+            docker stop gfms-monkey || true
+            docker rm gfms-monkey || true
             docker run -d -e API_KEY=${{ secrets.GFMS_APIKEY }} --name gfms-monkey -p 127.0.0.1:8080:80 ghcr.io/${{ github.repository }}/app:latest
           EOF
