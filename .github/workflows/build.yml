@@ -62,5 +62,5 @@ jobs:
             docker pull ghcr.io/${{ github.repository }}/my-app:latest
             docker stop my-app || true
             docker rm my-app || true
-            docker run -d --name gfms-monkey -p 127.0.0.1:8080:80 ghcr.io/${{ github.repository }}/app:latest
+            docker run -d -e API_KEY=${{ secrets.GFMS_APIKEY }} --name gfms-monkey -p 127.0.0.1:8080:80 ghcr.io/${{ github.repository }}/app:latest
           EOF
